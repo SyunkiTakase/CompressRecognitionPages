@@ -1,90 +1,99 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>エッジコンピューティングのための圧縮画像認識</title>
-    <style>
-        body {
-            margin: 0; /* ページのマージンをゼロに設定 */
-            padding: 0; /* ページのパディングをゼロに設定 */
-        }
 
-        header {
-            background-color: #333; /* ヘッダーの背景色を指定 */
-            color: white; /* ヘッダーテキストの色を指定 */
-            padding: 10px; /* ヘッダーの内側の余白を指定 */
-            text-align: center; /* テキストを中央揃えにする */
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>エッジコンピューティングのための圧縮画像認識</title>
+        <style>
+            body {
+                margin: 0; /* ページのマージンをゼロに設定 */
+                padding: 0; /* ページのパディングをゼロに設定 */
+            }
 
-        #thumbnail {
-            width: 100%; /* サムネイルの幅を100%に設定 */
-            height: 50%; /* アスペクト比を維持して自動的に高さを調整 */
-            display: block; /* ブロック要素として表示 */
-        }
+            header {
+                background-color: #333; /* ヘッダーの背景色を指定 */
+                color: white; /* ヘッダーテキストの色を指定 */
+                padding: 10px; /* ヘッダーの内側の余白を指定 */
+                text-align: center; /* テキストを中央揃えにする */
+            }
 
-        section {
-            margin-left: 1cm; /* 左端から6cmのスペースを空ける */
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>エッジコンピューティングのための圧縮画像認識</h1>
+            #thumbnail {
+                width: 100%; /* サムネイルの幅を100%に設定 */
+                height: 50%; /* アスペクト比を維持して自動的に高さを調整 */
+                display: block; /* ブロック要素として表示 */
+            }
+
+            section {
+                margin-left: 1cm; /* 左端から6cmのスペースを空ける */
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>エッジコンピューティングのための圧縮画像認識</h1>
+            
+            <p><font size="3">高瀬 俊希，山内 悠嗣(中部大学) <br>
+
+                ビジョン技術の実利用ワークショップ(ViEW) 2022 <br>
+
+                [<a href="https://drive.google.com/file/d/1BF7IK8PyHSGDw0pWBS6RM5j-PV9_3M5f/view?usp=sharing">Paper</a>] &nbsp;&nbsp;
+                [<a href="https://drive.google.com/file/d/1927WZ-1swSNPiiJjHCFHvKFY8dYl6Yix/view?usp=sharing">Poster</a>]
         
-        <p><font size="3">高瀬 俊希，山内 悠嗣(中部大学) <br>
+            </font></p>
 
-        ビジョン技術の実利用ワークショップ(ViEW) 2022</font></p>
-    </header>
+        </header>
 
-    <img src="pic/framework.jpg" width="85%">
+        <img src="pic/framework.jpg" width="85%">
 
+        <section>
+            <h2>Abstract</h2>
 
-    <section>
-        <h2>Abstract</h2>
+            本稿では，エッジコンピューティングを活用した画像認識システムにおけるデータ通信量を削減するために，<br>
+            画像の圧縮・復元と画像認識を行う2つのネットワークから構成されるフレームワークを提案する． <br>
+            クライアント側では，データ通信量を削減するためにエンコーダにより画像を圧縮してエッジサーバへ送信する． <br>
+            エッジサーバでは圧縮データをデコーダにより復元した画像を認識する． <br>
+            本稿では提案するフレームワークを画像分類と物体検出の2つのタスクに適用し，その有効性を確認する． <br>
 
-        本稿では，エッジコンピューティングを活用した画像認識システムにおけるデータ通信量を削減するために，<br>
-        画像の圧縮・復元と画像認識を行う2つのネットワークから構成されるフレームワークを提案する． <br>
-        クライアント側では，データ通信量を削減するためにエンコーダにより画像を圧縮してエッジサーバへ送信する． <br>
-        エッジサーバでは圧縮データをデコーダにより復元した画像を認識する． <br>
-        本稿では提案するフレームワークを画像分類と物体検出の2つのタスクに適用し，その有効性を確認する． <br>
+        </section>
 
-    </section>
+        <section>
+            <h2>各繰り返し回数の復元画像</h2>
 
-    <section>
-        <h2>各繰り返し回数の復元画像</h2>
+            繰り返し回数が多くなるに従って画質が向上している．
+            特に細かなテクスチャを持つ画像(上段)は，何度も繰り返すことにより著しく画質が向上する．
 
-        繰り返し回数が多くなるに従って画質が向上している．
-        特に細かなテクスチャを持つ画像(上段)は，何度も繰り返すことにより著しく画質が向上する．
+            <img src="pic/comp_img.png" width="85%">
 
-        <img src="pic/comp_img.png" width="85%">
+        </section>
 
-    </section>
+        <section>
+            <h2>各タスクにおける従来手法と提案手法の認識精度とデータ通信量の削減率</h2>
 
-    <section>
-        <h2>各タスクにおける従来手法と提案手法の認識精度とデータ通信量の削減率</h2>
+            提案手法はデータ通信量を画像分類タスクにおいて85[%]~95[%]，物体検出タスクにおいて75[%]~77[%]削減可能である． <br>
+            分類精度は画像を圧縮しない従来手法が最も高く，提案手法(圧縮画像モデル)は従来手法と比較して3～4[%]の低下した． <br>
+            mAPは画像を圧縮しない従来手法が最も高く，提案手法(圧縮画像モデル)は従来手法と比較して3～12[%]の低下した． <br>
 
-        提案手法はデータ通信量を画像分類タスクにおいて85[%]~95[%]，物体検出タスクにおいて75[%]~77[%]削減可能である． <br>
-        分類精度は画像を圧縮しない従来手法が最も高く，提案手法(圧縮画像モデル)は従来手法と比較して3～4[%]の低下した． <br>
-        mAPは画像を圧縮しない従来手法が最も高く，提案手法(圧縮画像モデル)は従来手法と比較して3～12[%]の低下した． <br>
+            <img src="pic/result.png" width="85%">
 
-        <img src="pic/result.png" width="85%">
+        </section>
 
-    </section>
+        <section>
+            <h2>Bibtex</h2>
 
-    <section>
-        <h2>Bibtex</h2>
+            <code>
+            @inproceedings{高瀬2022,  <br>
+                author = {高瀬 俊希 and 戸谷 響 and 西片 智広 and 山内 悠嗣},  <br>
+                title = {エッジコンピューティングのための圧縮画像認識}, <br>
+                booktitle = {ビジョン技術の実利用ワークショップ},  <br>
+                year = {2022},  <br>
+            } <br>
+            </code>
 
-        <code>
-        @inproceedings{高瀬2022,  <br>
-            author = {高瀬 俊希 and 戸谷 響 and 西片 智広 and 山内 悠嗣},  <br>
-            title = {エッジコンピューティングのための圧縮画像認識}, <br>
-            booktitle = {ビジョン技術の実利用ワークショップ},  <br>
-            year = {2022},  <br>
-        } <br>
-        </code>
+        </section>
 
-    </section>
+    </body>
 
-</body>
 </html>
