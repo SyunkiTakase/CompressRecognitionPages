@@ -1,99 +1,83 @@
 <!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>エッジコンピューティングのための圧縮画像認識</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Webpage of Syunki Takase">
+<link rel="stylesheet" href="./css/style.css">
+<script type="text/javascript" src="./js/openclose.js"></script>
+</head>
 
-<html lang="en">
+<body>
+<div id="container">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>エッジコンピューティングのための圧縮画像認識</title>
-        <style>
-            body {
-                margin: 0; /* ページのマージンをゼロに設定 */
-                padding: 0; /* ページのパディングをゼロに設定 */
-            }
+<header>
+	<h1 id="home">エッジコンピューティングのための圧縮画像認識</a></h1>
+</header>
+<br/>
+<img1><a href="https://twitter.com/Tacase_ML"><img src="./images/X.png" width="20" hspace="6"></a></img1>
+<img2><a href="https://github.com/SyunkiTakase"><img src="./images/Github.png" width="20" hspace="6"></a></img2>
+<img3><a href="https://qiita.com/syunki_tacase"><img src="./images/Qiita.png" width="20" hspace="6"></a></img3>
 
-            header {
-                background-color: #333; /* ヘッダーの背景色を指定 */
-                color: white; /* ヘッダーテキストの色を指定 */
-                padding: 10px; /* ヘッダーの内側の余白を指定 */
-                text-align: center; /* テキストを中央揃えにする */
-            }
+<section id="new">
+<h2 id="newinfo_hdr" class="close">Abstract</h2>
+<dl id="newinfo">
+<p>
+<li>
+	本稿では，エッジコンピューティングを活用した画像認識システムにおけるデータ通信量を削減するために，画像の圧縮・復元と画像認識を行う2つのネットワークから構成されるフレームワークを提案する．
+    <img src="pic/framework.jpg" width="85%">
+</li>
+</p>
+</dl>
+</section>
 
-            #thumbnail {
-                width: 100%; /* サムネイルの幅を100%に設定 */
-                height: 50%; /* アスペクト比を維持して自動的に高さを調整 */
-                display: block; /* ブロック要素として表示 */
-            }
-
-            section {
-                margin-left: 1cm; /* 左端から6cmのスペースを空ける */
-            }
-
-            div  {
-                margin : 30px ;
-                padding : 20px ;
-                /* border : 5px solid maroon ;
-                background-color : lightgreen ; */
-            }
-        </style>
-    </head>
-
-    <body>
-        <header>
-            <h1>エッジコンピューティングのための圧縮画像認識</h1>
-            
-            <p><font size="3">高瀬 俊希，山内 悠嗣(中部大学) <br>
-
-                ビジョン技術の実利用ワークショップ(ViEW) 2022 <br>
-
-                [<a href="https://drive.google.com/file/d/1BF7IK8PyHSGDw0pWBS6RM5j-PV9_3M5f/view?usp=sharing">Paper</a>] &nbsp;&nbsp;
-                [<a href="https://drive.google.com/file/d/1927WZ-1swSNPiiJjHCFHvKFY8dYl6Yix/view?usp=sharing">Poster</a>]
-        
-            </font></p>
-
-        </header>
-
-        <div>
-            <h2>Abstract</h2>
-
-            本稿では，エッジコンピューティングを活用した画像認識システムにおけるデータ通信量を削減するために，画像の圧縮・復元と画像認識を行う2つのネットワークから構成されるフレームワークを提案する． クライアント側では，データ通信量を削減するためにエンコーダにより画像を圧縮してエッジサーバへ送信する．エッジサーバでは圧縮データをデコーダにより復元した画像を認識する．本稿では提案するフレームワークを画像分類と物体検出の2つのタスクに適用し，その有効性を確認する．<br>
-            
-            <img src="pic/framework.jpg" width="85%">
-
-        </div>
-
-        <div>
-            <h2>各繰り返し回数の復元画像</h2>
-
+<section id="new">
+<h2 id="newinfo_hdr" class="close">各繰り返し回数の復元画像</h2>
+<dl id="newinfo">
+    <p>
+        <li>
             繰り返し回数が多くなるに従って画質が向上している．特に細かなテクスチャを持つ画像(上段)は，何度も繰り返すことにより著しく画質が向上する．
-
             <img src="pic/comp_img.png" width="85%">
+        </li>
+        </p>
+        </dl>
+</section>
 
-        </div>
+<section id="new">
+    <h2 id="newinfo_hdr" class="close">各タスクにおける従来手法と提案手法の認識精度とデータ通信量の削減率</h2>
+    <dl id="newinfo">
+        <p>
+            <li>
+                提案手法はデータ通信量を画像分類タスクにおいて85[%]~95[%]，物体検出タスクにおいて75[%]~77[%]削減可能である．分類精度は画像を圧縮しない従来手法が最も高く，提案手法(圧縮画像モデル)は従来手法と比較して3～4[%]の低下した．mAPは画像を圧縮しない従来手法が最も高く，提案手法(圧縮画像モデル)は従来手法と比較して3～12[%]の低下した．
+                <img src="pic/result.png" width="85%">
+            </li>
+            </p>
+            </dl>
+</section>
 
-        <div>
-            <h2>各タスクにおける従来手法と提案手法の認識精度とデータ通信量の削減率</h2>
+</div>
 
-            提案手法はデータ通信量を画像分類タスクにおいて85[%]~95[%]，物体検出タスクにおいて75[%]~77[%]削減可能である．分類精度は画像を圧縮しない従来手法が最も高く，提案手法(圧縮画像モデル)は従来手法と比較して3～4[%]の低下した．mAPは画像を圧縮しない従来手法が最も高く，提案手法(圧縮画像モデル)は従来手法と比較して3～12[%]の低下した．
+<div>
+    <h2>Bibtex</h2>
 
-            <img src="pic/result.png" width="85%">
+    <code>
+    @inproceedings{高瀬2022,  <br>
+        author = {高瀬 俊希 and 戸谷 響 and 西片 智広 and 山内 悠嗣},  <br>
+        title = {エッジコンピューティングのための圧縮画像認識}, <br>
+        booktitle = {ビジョン技術の実利用ワークショップ},  <br>
+        year = {2022},  <br>
+    } <br>
+    </code>
 
-        </div>
+</div>
 
-        <div>
-            <h2>Bibtex</h2>
+<script type="text/javascript">
+if (OCwindowWidth() <= 600) {
+	open_close("newinfo_hdr", "newinfo");
+}
+</script>
 
-            <code>
-            @inproceedings{高瀬2022,  <br>
-                author = {高瀬 俊希 and 戸谷 響 and 西片 智広 and 山内 悠嗣},  <br>
-                title = {エッジコンピューティングのための圧縮画像認識}, <br>
-                booktitle = {ビジョン技術の実利用ワークショップ},  <br>
-                year = {2022},  <br>
-            } <br>
-            </code>
-
-        </div>
-
-    </body>
-
+</body>
 </html>
